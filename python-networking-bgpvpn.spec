@@ -152,3 +152,4 @@ chmod 640  %{buildroot}%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %changelog
 * Thu Sep 15 2016 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
 - Initial package.
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/networking-bgpvpn/commit/?id=9d6331a4542cdf376b4b82efd52fbcd78e8d3197
