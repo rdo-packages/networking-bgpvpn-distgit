@@ -129,6 +129,8 @@ chmod 640  %{buildroot}%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %{python2_sitelib}/%{sname}
 %{python2_sitelib}/networking_bgpvpn_tempest
 %{python2_sitelib}/networking_bgpvpn-*.egg-info
+%attr(-, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
+%attr(-, root, neutron) %{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %exclude %{python2_sitelib}/%{sname}/tests
 %exclude %{python2_sitelib}/bgpvpn_dashboard
 
