@@ -117,6 +117,8 @@ mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir
 mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/policy.d/
 chmod 640  %{buildroot}%{_sysconfdir}/neutron/networking_bgpvpn.conf
 chmod 640  %{buildroot}%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
+chown root:neutron  %{buildroot}%{_sysconfdir}/neutron/networking_bgpvpn.conf
+chown root:neutron  %{buildroot}%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 
 %check
 %{__python2} setup.py testr
