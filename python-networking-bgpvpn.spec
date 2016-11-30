@@ -124,11 +124,11 @@ chmod 640  %{buildroot}%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %files -n python2-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{_sysconfdir}/neutron/networking_bgpvpn.conf
-%{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %{python2_sitelib}/%{sname}
 %{python2_sitelib}/networking_bgpvpn_tempest
 %{python2_sitelib}/networking_bgpvpn-*.egg-info
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
+%config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %exclude %{python2_sitelib}/%{sname}/tests
 %exclude %{python2_sitelib}/bgpvpn_dashboard
 
