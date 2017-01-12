@@ -150,3 +150,4 @@ mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/
 %changelog
 * Thu Sep 15 2016 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
 - Initial package.
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/networking-bgpvpn/commit/?id=fd8b9f949ca068316a820389aad882ad3dc67d90
