@@ -1,5 +1,5 @@
-# UUID          Group Name
-False 	Non-Interactive Users
-6ae42e13797b568d0597d5ae41899a83bf683faf       	openstack/networking-bgpvpn-distgit-core
-f013027b9f9e4e273913035fa98719288cfc5348        	openstack/networking-bgpvpn-distgit-ptl
-global:Registered-Users		Registered Users
+# UUID                                  	Group Name
+#
+6ae42e13797b568d0597d5ae41899a83bf683faf	openstack/networking-bgpvpn-distgit-core
+f013027b9f9e4e273913035fa98719288cfc5348	openstack/networking-bgpvpn-distgit-ptl
+global:Registered-Users                 	Registered Users
