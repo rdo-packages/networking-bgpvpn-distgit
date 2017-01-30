@@ -29,8 +29,8 @@ BuildRequires:  python-pbr
 BuildRequires:  python-reno
 BuildRequires:  python-setuptools
 BuildRequires:  python-sphinx
-#BuildRequires:  python-sphinxcontrib-blockdiag
-#BuildRequires:  python-sphinxcontrib-seqdiag
+BuildRequires:  python-sphinxcontrib-blockdiag
+BuildRequires:  python-sphinxcontrib-seqdiag
 BuildRequires:  python-subunit
 BuildRequires:  python-testrepository
 BuildRequires:  python-testresources
@@ -103,9 +103,7 @@ rm -rf %{pypi_name}.egg-info
 %build
 %py2_build
 # generate html docs
-# TODO: the doc generation is commented until python-sphinxcontrib-* packages
-# are included in CBS. This needs to be fixed.
-#%{__python2} setup.py build_sphinx
+%{__python2} setup.py build_sphinx
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
@@ -131,7 +129,7 @@ mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/
 %exclude %{python2_sitelib}/bgpvpn_dashboard
 
 %files -n python-%{pypi_name}-doc
-#%doc html
+%doc html
 %license LICENSE
 
 %files -n python-%{pypi_name}-tests
@@ -148,5 +146,5 @@ mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/
 %{python2_sitelib}/networking_bgpvpn_heat
 
 %changelog
-* Thu Sep 15 2016 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
+* Mon Jan 30 2017 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
 - Initial package.
