@@ -2,9 +2,7 @@
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-# TODO: the doc generation is commented until python-sphinxcontrib-* packages
-# are included in CBS. This needs to be fixed.
-%global with_doc 0
+%global with_doc 1
 
 Name:           python-%{pypi_name}
 Version:        XXX
