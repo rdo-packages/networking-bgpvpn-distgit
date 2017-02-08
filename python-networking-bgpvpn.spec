@@ -116,6 +116,10 @@ mkdir -p %{buildroot}%{_sysconfdir}/neutron/policy.d
 mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/
 mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/policy.d/
 
+# Make sure neutron-server loads new configuration file
+mkdir -p %{buildroot}/%{_datadir}/neutron/server
+ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neutron/server/networking_bgpvpn.conf
+
 %check
 %{__python2} setup.py testr
 
@@ -127,6 +131,7 @@ mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/
 %{python2_sitelib}/networking_bgpvpn-*.egg-info
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/policy.d/bgpvpn.conf
+%{_datadir}/neutron/server/networking_bgpvpn.conf
 %exclude %{python2_sitelib}/%{sname}/tests
 %exclude %{python2_sitelib}/bgpvpn_dashboard
 
