@@ -1,15 +1,21 @@
+%{!?upstream_version: %global upstream_version %{commit}}
+%global commit 681a5e742fff2c03ef9b441851af508e6591286c
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+# DO NOT REMOVE ALPHATAG
+%global alphatag .%{shortcommit}git
+
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
-%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        6.0.0
+Release:        0.1%{?alphatag}%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
-Source0:        https://files.pythonhosted.org/packages/source/n/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+Source0:        https://github.com/openstack/%{pypi_name}/archive/%{commit}.tar.gz#/%{pypi_name}-%{shortcommit}.tar.gz
+
 BuildArch:      noarch
 
 BuildRequires:  python-webob
@@ -157,5 +163,5 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/networking_bgpvpn_heat
 
 %changelog
-* Thu Sep 15 2016 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
-- Initial package.
+* Mon Feb 20 2017 Alfredo Moralejo <amoralej@redhat.com> - 6.0.0-0.1.681a5e74git
+- Update to pre-release 6.0.0 (681a5e742fff2c03ef9b441851af508e6591286c)
