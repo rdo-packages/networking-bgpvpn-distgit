@@ -9,9 +9,11 @@ Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
-Source0:        https://files.pythonhosted.org/packages/source/n/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 BuildArch:      noarch
 
+BuildRequires:  openstack-macros
+BuildRequires:  git
 BuildRequires:  python-webob
 BuildRequires:  python-webtest
 BuildRequires:  python-coverage
@@ -26,7 +28,6 @@ BuildRequires:  python-oslotest
 BuildRequires:  python-openstackclient
 BuildRequires:  python-openvswitch
 BuildRequires:  python-pbr
-BuildRequires:  python-reno
 BuildRequires:  python-setuptools
 BuildRequires:  python-sphinx
 #BuildRequires:  python-sphinxcontrib-blockdiag
@@ -99,8 +100,21 @@ Requires: python-%{pypi_name} = %{version}-%{release}
 %description -n python-%{pypi_name}-heat
 Networking-bgpvpn heat resources
 
+%package -n python-%{pypi_name}-tests-tempest
+Summary:    %{name} Tempest plugin
+
+Requires:   python-%{pypi_name} = %{version}-%{release}
+Requires:   python-tempest-tests
+Requires:   python-neutron-tests
+Requires:   python-testtools
+
+%description -n python-%{pypi_name}-tests-tempest
+It contains the tempest plugin for %{sname}
+
 %prep
-%autosetup -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
+# Let RPM handle the dependencies
+%py_req_cleanup
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -124,6 +138,9 @@ mv %{buildroot}/usr/etc/neutron/policy.d/bgpvpn.conf %{buildroot}%{_sysconfdir}/
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
 ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neutron/server/networking_bgpvpn.conf
 
+# Create a fake tempest plugin entry point
+%py2_entrypoint %{sname} %{pypi_name}
+
 %check
 # FIXME(jpena): temporarily ignoring test results, because the changes in networking-bagpipe are not
 # done yet. Once https://review.rdoproject.org/r/5839 is merged, we can enable tests again
@@ -133,7 +150,6 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/%{sname}
-%{python2_sitelib}/networking_bgpvpn_tempest
 %{python2_sitelib}/networking_bgpvpn-*.egg-info
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/policy.d/bgpvpn.conf
@@ -158,6 +174,8 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %license LICENSE
 %{python2_sitelib}/networking_bgpvpn_heat
 
+%files -n python-%{pypi_name}-tests-tempest
+%{python2_sitelib}/networking_bgpvpn_tempest
+%{python2_sitelib}/%{sname}_tests.egg-info
+
 %changelog
-* Thu Sep 15 2016 Ricardo Noriega <rnoriega@redhat.com> - 4.0.1
-- Initial package.
