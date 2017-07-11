@@ -2,6 +2,10 @@
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
+# TODO: the doc generation is commented until python-sphinxcontrib-* packages
+# are included in CBS. This needs to be fixed.
+%global with_doc 0
+
 Name:           python-%{pypi_name}
 Version:        XXX
 Release:        XXX
@@ -23,15 +27,11 @@ BuildRequires:  python-networking-bagpipe
 BuildRequires:  python-neutron-tests
 BuildRequires:  python-neutron
 BuildRequires:  python-osc-lib-tests
-BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-oslotest
 BuildRequires:  python-openstackclient
 BuildRequires:  python-openvswitch
 BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
-BuildRequires:  python-sphinx
-#BuildRequires:  python-sphinxcontrib-blockdiag
-#BuildRequires:  python-sphinxcontrib-seqdiag
 BuildRequires:  python-subunit
 BuildRequires:  python-testrepository
 BuildRequires:  python-testresources
@@ -74,10 +74,18 @@ widely used Wide Area Networking technologies. The primary purpose of this
 project is to allow attachment of Neutron networks and/or routers to carrier
 provided.
 
+%if 0%{?with_doc}
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
+
+BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-sphinx
+BuildRequires:  python-sphinxcontrib-blockdiag
+BuildRequires:  python-sphinxcontrib-seqdiag
+
 %description -n python-%{pypi_name}-doc
 Documentation for networking-bgpvpn
+%endif
 
 %package -n python-%{pypi_name}-tests
 Summary:        networking-bgpvpn tests
@@ -120,12 +128,12 @@ rm -rf %{pypi_name}.egg-info
 
 %build
 %py2_build
+%if 0%{?with_doc}
 # generate html docs
-# TODO: the doc generation is commented until python-sphinxcontrib-* packages
-# are included in CBS. This needs to be fixed.
-#%{__python2} setup.py build_sphinx
+%{__python2} setup.py build_sphinx
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
+%endif
 
 %install
 %py2_install
@@ -157,9 +165,11 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %exclude %{python2_sitelib}/%{sname}/tests
 %exclude %{python2_sitelib}/bgpvpn_dashboard
 
+%if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
-#%doc html
+%doc html
 %license LICENSE
+%endif
 
 %files -n python-%{pypi_name}-tests
 %license LICENSE
