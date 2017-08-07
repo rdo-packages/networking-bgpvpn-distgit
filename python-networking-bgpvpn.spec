@@ -19,7 +19,6 @@ BuildArch:      noarch
 BuildRequires:  openstack-macros
 BuildRequires:  git
 BuildRequires:  python-webob
-BuildRequires:  python-webtest
 BuildRequires:  python-coverage
 BuildRequires:  python-hacking
 BuildRequires:  python-networking-odl
@@ -52,7 +51,6 @@ Summary:        API and Framework to interconnect bgpvpn to neutron networks
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:       python-webob >= 1.2.3
-Requires:       python-webtest >= 2.0
 Requires:       python-pbr >= 1.8
 Requires:       python-babel >= 2.3.4
 Requires:       python-neutron-lib >= 1.1.0
