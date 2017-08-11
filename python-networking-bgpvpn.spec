@@ -19,7 +19,6 @@ BuildArch:      noarch
 BuildRequires:  openstack-macros
 BuildRequires:  git
 BuildRequires:  python-webob
-BuildRequires:  python-coverage
 BuildRequires:  python-hacking
 BuildRequires:  python-networking-odl
 BuildRequires:  python-networking-bagpipe
