@@ -30,7 +30,6 @@ BuildRequires:  python-oslotest
 BuildRequires:  python-openstackclient
 BuildRequires:  python-openvswitch
 BuildRequires:  python-pbr
-BuildRequires:  python-setuptools
 BuildRequires:  python-subunit
 BuildRequires:  python-testrepository
 BuildRequires:  python-testresources
@@ -51,16 +50,16 @@ Summary:        API and Framework to interconnect bgpvpn to neutron networks
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:       python-webob >= 1.2.3
-Requires:       python-pbr >= 1.8
+Requires:       python-pbr >= 2.0.0
 Requires:       python-babel >= 2.3.4
-Requires:       python-neutron-lib >= 1.1.0
+Requires:       python-neutron-lib >= 1.9.0
 Requires:       python-neutronclient >= 5.1.0
 Requires:       python-openstackclient >= 3.3.0
-Requires:       python-oslo-config >= 2:3.14.0
+Requires:       python-oslo-config >= 2:4.0.0
 Requires:       python-oslo-i18n >= 2.1.0
-Requires:       python-oslo-db >= 4.15.0
-Requires:       python-oslo-log >= 3.11.0
-Requires:       python-oslo-utils >= 3.18.0
+Requires:       python-oslo-db >= 4.24.0
+Requires:       python-oslo-log >= 3.22.0
+Requires:       python-oslo-utils >= 3.20.0
 Requires:       python-setuptools
 Requires:       openstack-neutron-common
 
