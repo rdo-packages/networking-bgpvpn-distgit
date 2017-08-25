@@ -1,3 +1,4 @@
+%global milestone .0rc2
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -7,13 +8,17 @@
 %global with_doc 0
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        7.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+#
+# patches_base=7.0.0.0rc2
+#
+
 BuildArch:      noarch
 
 BuildRequires:  openstack-macros
@@ -186,3 +191,6 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+* Fri Aug 25 2017 Alfredo Moralejo <amoralej@redhat.com> 7.0.0-0.1.0rc2
+- Update to 7.0.0.0rc2
+
