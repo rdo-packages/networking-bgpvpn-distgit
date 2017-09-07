@@ -6,6 +6,14 @@
 # are included in CBS. This needs to be fixed.
 %global with_doc 0
 
+%global common_desc \
+BGPMPLS VPN Extension for OpenStack Networking This project provides an API and \
+Framework to interconnect BGP/MPLS VPNs to Openstack Neutron networks, routers \
+and ports.The Border Gateway Protocol and MultiProtocol Label Switching are \
+widely used Wide Area Networking technologies. The primary purpose of this \
+project is to allow attachment of Neutron networks and/or routers to carrier \
+provided.
+
 Name:           python-%{pypi_name}
 Version:        XXX
 Release:        XXX
@@ -37,12 +45,7 @@ BuildRequires:  python-testtools
 BuildRequires:  python2-devel
 
 %description
-BGPMPLS VPN Extension for OpenStack Networking This project provides an API and
-Framework to interconnect BGP/MPLS VPNs to Openstack Neutron networks, routers
-and ports.The Border Gateway Protocol and MultiProtocol Label Switching are
-widely used Wide Area Networking technologies. The primary purpose of this
-project is to allow attachment of Neutron networks and/or routers to carrier
-provided.
+%{common_desc}
 
 %package -n     python2-%{pypi_name}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
@@ -63,12 +66,7 @@ Requires:       python-setuptools
 Requires:       openstack-neutron-common
 
 %description -n python2-%{pypi_name}
-BGPMPLS VPN Extension for OpenStack Networking This project provides an API and
-Framework to interconnect BGP/MPLS VPNs to Openstack Neutron networks, routers
-and ports.The Border Gateway Protocol and MultiProtocol Label Switching are
-widely used Wide Area Networking technologies. The primary purpose of this
-project is to allow attachment of Neutron networks and/or routers to carrier
-provided.
+%{common_desc}
 
 %if 0%{?with_doc}
 %package -n python-%{pypi_name}-doc
