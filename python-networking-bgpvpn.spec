@@ -146,9 +146,7 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %py2_entrypoint %{sname} %{pypi_name}
 
 %check
-# FIXME(jpena): temporarily ignoring test results, because the changes in networking-bagpipe are not
-# done yet. Once https://review.rdoproject.org/r/5839 is merged, we can enable tests again
-%{__python2} setup.py testr || :
+%{__python2} setup.py testr
 
 %files -n python2-%{pypi_name}
 %license LICENSE
