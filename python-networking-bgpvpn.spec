@@ -2,9 +2,7 @@
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-# TODO: the doc generation is commented until python-sphinxcontrib-* packages
-# are included in CBS. This needs to be fixed.
-%global with_doc 0
+%global with_doc 1
 
 %global common_desc \
 BGPMPLS VPN Extension for OpenStack Networking This project provides an API and \
@@ -72,7 +70,7 @@ Requires:       openstack-neutron-common
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
 
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 BuildRequires:  python-sphinx
 BuildRequires:  python-sphinxcontrib-blockdiag
 BuildRequires:  python-sphinxcontrib-seqdiag
@@ -124,9 +122,9 @@ rm -rf %{pypi_name}.egg-info
 %py2_build
 %if 0%{?with_doc}
 # generate html docs
-%{__python2} setup.py build_sphinx
+%{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
+rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
@@ -159,7 +157,7 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
-%doc html
+%doc doc/build/html
 %license LICENSE
 %endif
 
