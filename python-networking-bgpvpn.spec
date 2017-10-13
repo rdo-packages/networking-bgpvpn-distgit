@@ -104,7 +104,7 @@ Networking-bgpvpn heat resources
 Summary:    %{name} Tempest plugin
 
 Requires:   python-%{pypi_name} = %{version}-%{release}
-Requires:   python-tempest-tests
+Requires:   python-tempest
 Requires:   python-neutron-tests
 Requires:   python-testtools
 
