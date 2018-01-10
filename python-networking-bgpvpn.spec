@@ -27,7 +27,7 @@ BuildRequires:  git
 BuildRequires:  python-webob
 BuildRequires:  python-hacking
 BuildRequires:  python-networking-odl
-BuildRequires:  python-networking-bagpipe
+BuildRequires:  python-networking-bagpipe >= 8.0.0
 BuildRequires:  python-neutron-tests
 BuildRequires:  python-neutron
 BuildRequires:  python-osc-lib-tests
