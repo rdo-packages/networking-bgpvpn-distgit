@@ -179,3 +179,4 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/networking-bgpvpn/commit/?id=cc671c8871a896d09f598235741f7f938b9f4b8f
