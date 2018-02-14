@@ -22,6 +22,30 @@
       "revId": "237dd82ab0e001cbab09fde835ab4c34072a8f22",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aaa499b_6f2f2ea2",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-02-14T10:08:25Z",
+      "side": 0,
+      "message": "hmm in requirements.txt is not there but used, i readded it.",
+      "parentUuid": "7aaa499b_af7776d3",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "237dd82ab0e001cbab09fde835ab4c34072a8f22",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
