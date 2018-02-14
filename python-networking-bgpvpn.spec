@@ -25,21 +25,21 @@ BuildArch:      noarch
 BuildRequires:  openstack-macros
 BuildRequires:  git
 BuildRequires:  python-webob
-BuildRequires:  python-hacking
+BuildRequires:  python2-hacking
 BuildRequires:  python-networking-odl
-BuildRequires:  python-networking-bagpipe
+BuildRequires:  python2-networking-bagpipe
 BuildRequires:  python-neutron-tests
 BuildRequires:  python-neutron
-BuildRequires:  python-osc-lib-tests
-BuildRequires:  python-oslotest
-BuildRequires:  python-openstackclient
-BuildRequires:  python-openvswitch
-BuildRequires:  python-pbr
-BuildRequires:  python-subunit
-BuildRequires:  python-testrepository
-BuildRequires:  python-testresources
-BuildRequires:  python-testscenarios
-BuildRequires:  python-testtools
+BuildRequires:  python2-osc-lib-tests
+BuildRequires:  python2-oslotest
+BuildRequires:  python2-openstackclient
+BuildRequires:  python2-openvswitch
+BuildRequires:  python2-pbr
+BuildRequires:  python2-subunit
+BuildRequires:  python2-testrepository
+BuildRequires:  python2-testresources
+BuildRequires:  python2-testscenarios
+BuildRequires:  python2-testtools
 BuildRequires:  python2-devel
 
 %description
@@ -50,17 +50,15 @@ Summary:        API and Framework to interconnect bgpvpn to neutron networks
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:       python-webob >= 1.2.3
-Requires:       python-pbr >= 2.0.0
-Requires:       python-babel >= 2.3.4
-Requires:       python-neutron-lib >= 1.9.0
-Requires:       python-neutronclient >= 5.1.0
-Requires:       python-openstackclient >= 3.3.0
-Requires:       python-oslo-config >= 2:4.0.0
-Requires:       python-oslo-i18n >= 2.1.0
-Requires:       python-oslo-db >= 4.24.0
-Requires:       python-oslo-log >= 3.22.0
-Requires:       python-oslo-utils >= 3.20.0
-Requires:       python-setuptools
+Requires:       python2-pbr >= 2.0.0
+Requires:       python2-babel >= 2.3.4
+Requires:       python2-neutron-lib >= 1.13.0
+Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-i18n >= 3.15.3
+Requires:       python2-oslo-db >= 4.27.0
+Requires:       python2-oslo-log >= 3.36.0
+Requires:       python2-oslo-utils >= 3.33.0
+Requires:       python2-debtcollector >= 1.2.0
 Requires:       openstack-neutron-common
 
 %description -n python2-%{pypi_name}
@@ -70,10 +68,10 @@ Requires:       openstack-neutron-common
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
 
-BuildRequires:  python-openstackdocstheme
-BuildRequires:  python-sphinx
-BuildRequires:  python-sphinxcontrib-blockdiag
-BuildRequires:  python-sphinxcontrib-seqdiag
+BuildRequires:  python2-openstackdocstheme
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-sphinxcontrib-blockdiag
+BuildRequires:  python2-sphinxcontrib-seqdiag
 
 %description -n python-%{pypi_name}-doc
 Documentation for networking-bgpvpn
