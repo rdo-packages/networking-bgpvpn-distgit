@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -15,14 +14,12 @@ provided.
 
 Name:           python-%{pypi_name}
 Version:        8.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=8.0.0.0rc1
 #
 
 BuildArch:      noarch
@@ -182,6 +179,9 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+* Wed Feb 28 2018 RDO <dev@lists.rdoproject.org> 8.0.0-1
+- Update to 8.0.0
+
 * Mon Feb 19 2018 RDO <dev@lists.rdoproject.org> 8.0.0-0.1.0rc1
 - Update to 8.0.0.0rc1
 
