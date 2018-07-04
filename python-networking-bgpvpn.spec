@@ -36,6 +36,7 @@ BuildRequires:  python2-openstackclient
 BuildRequires:  python2-openvswitch
 BuildRequires:  python2-pbr
 BuildRequires:  python2-subunit
+BuildRequires:  python2-stestr
 BuildRequires:  python2-testrepository
 BuildRequires:  python2-testresources
 BuildRequires:  python2-testscenarios
@@ -140,7 +141,8 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %py2_entrypoint %{sname} %{pypi_name}
 
 %check
-%{__python2} setup.py testr
+export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
+stestr --test-path $OS_TEST_PATH run
 
 %files -n python2-%{pypi_name}
 %license LICENSE
