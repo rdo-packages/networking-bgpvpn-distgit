@@ -28,6 +28,7 @@ BuildRequires:  python-webob
 BuildRequires:  python2-hacking
 BuildRequires:  python-networking-odl
 BuildRequires:  python2-networking-bagpipe
+BuildRequires:  python2-neutron-lib-tests
 BuildRequires:  python-neutron-tests
 BuildRequires:  python-neutron
 BuildRequires:  python2-osc-lib-tests
