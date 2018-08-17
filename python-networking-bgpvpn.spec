@@ -54,9 +54,9 @@ Summary:        API and Framework to interconnect bgpvpn to neutron networks
 Requires:       python-webob >= 1.2.3
 Requires:       python2-pbr >= 2.0.0
 Requires:       python2-babel >= 2.3.4
-Requires:       python2-neutron-lib >= 1.13.0
+Requires:       python2-neutron-lib >= 1.18.0
 Requires:       python2-neutronclient >= 6.3.0
-Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-config >= 2:5.2.0
 Requires:       python2-oslo-i18n >= 3.15.3
 Requires:       python2-oslo-db >= 4.27.0
 Requires:       python2-oslo-log >= 3.36.0
