@@ -13,7 +13,7 @@ project is to allow attachment of Neutron networks and/or routers to carrier \
 provided.
 
 Name:           python-%{pypi_name}
-Version:        8.0.0
+Version:        8.0.1
 Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
@@ -179,6 +179,9 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+* Wed Oct 03 2018 RDO <dev@lists.rdoproject.org> 8.0.1-1
+- Update to 8.0.1
+
 * Wed Feb 28 2018 RDO <dev@lists.rdoproject.org> 8.0.0-1
 - Update to 8.0.0
 
