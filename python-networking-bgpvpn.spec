@@ -1,6 +1,21 @@
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%global docpath doc/build/html
+
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+%global pyver_entrypoint %py%{pyver}_entrypoint %{sname} %{pypi_name}
+# End of macros for py2/py3 compatibility
 
 %global with_doc 1
 
@@ -24,91 +39,100 @@ BuildArch:      noarch
 
 BuildRequires:  openstack-macros
 BuildRequires:  git
+BuildRequires:  python%{pyver}-hacking
+BuildRequires:  python%{pyver}-networking-bagpipe
+BuildRequires:  python%{pyver}-neutron-lib-tests
+BuildRequires:  python%{pyver}-neutron-tests
+BuildRequires:  python%{pyver}-neutron
+BuildRequires:  python%{pyver}-osc-lib-tests
+BuildRequires:  python%{pyver}-oslotest
+BuildRequires:  python%{pyver}-openstackclient
+BuildRequires:  python%{pyver}-openvswitch
+BuildRequires:  python%{pyver}-pbr
+BuildRequires:  python%{pyver}-subunit
+BuildRequires:  python%{pyver}-stestr
+BuildRequires:  python%{pyver}-testrepository
+BuildRequires:  python%{pyver}-testresources
+BuildRequires:  python%{pyver}-testscenarios
+BuildRequires:  python%{pyver}-testtools
+BuildRequires:  python%{pyver}-devel
+%if %{pyver} == 2
 BuildRequires:  python-webob
-BuildRequires:  python2-hacking
 BuildRequires:  python-networking-odl
-BuildRequires:  python2-networking-bagpipe
-BuildRequires:  python2-neutron-lib-tests
-BuildRequires:  python-neutron-tests
-BuildRequires:  python-neutron
-BuildRequires:  python2-osc-lib-tests
-BuildRequires:  python2-oslotest
-BuildRequires:  python2-openstackclient
-BuildRequires:  python2-openvswitch
-BuildRequires:  python2-pbr
-BuildRequires:  python2-subunit
-BuildRequires:  python2-stestr
-BuildRequires:  python2-testrepository
-BuildRequires:  python2-testresources
-BuildRequires:  python2-testscenarios
-BuildRequires:  python2-testtools
-BuildRequires:  python2-devel
+%else
+BuildRequires:  python%{pyver}-webob
+BuildRequires:  python%{pyver}-networking-odl
+%endif
 
 %description
 %{common_desc}
 
-%package -n     python2-%{pypi_name}
+%package -n     python%{pyver}-%{pypi_name}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
-%{?python_provide:%python_provide python2-%{pypi_name}}
+%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
 
-Requires:       python-webob >= 1.2.3
-Requires:       python2-pbr >= 2.0.0
-Requires:       python2-babel >= 2.3.4
-Requires:       python2-neutron-lib >= 1.18.0
-Requires:       python2-neutronclient >= 6.3.0
-Requires:       python2-oslo-config >= 2:5.2.0
-Requires:       python2-oslo-i18n >= 3.15.3
-Requires:       python2-oslo-db >= 4.27.0
-Requires:       python2-oslo-log >= 3.36.0
-Requires:       python2-oslo-utils >= 3.33.0
-Requires:       python2-debtcollector >= 1.2.0
+Requires:       python%{pyver}-pbr >= 2.0.0
+Requires:       python%{pyver}-babel >= 2.3.4
+Requires:       python%{pyver}-neutron-lib >= 1.18.0
+Requires:       python%{pyver}-neutronclient >= 6.3.0
+Requires:       python%{pyver}-oslo-config >= 2:5.2.0
+Requires:       python%{pyver}-oslo-i18n >= 3.15.3
+Requires:       python%{pyver}-oslo-db >= 4.27.0
+Requires:       python%{pyver}-oslo-log >= 3.36.0
+Requires:       python%{pyver}-oslo-utils >= 3.33.0
+Requires:       python%{pyver}-debtcollector >= 1.2.0
 Requires:       openstack-neutron-common
+%if %{pyver} == 2
+Requires:       python-webob >= 1.2.3
+%else
+Requires:       python%{pyver}-webob >= 1.2.3
+%endif
 
-%description -n python2-%{pypi_name}
+%description -n python%{pyver}-%{pypi_name}
 %{common_desc}
 
 %if 0%{?with_doc}
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
 
-BuildRequires:  python2-openstackdocstheme
-BuildRequires:  python2-sphinx
-BuildRequires:  python2-sphinxcontrib-blockdiag
-BuildRequires:  python2-sphinxcontrib-seqdiag
+BuildRequires:  python%{pyver}-openstackdocstheme
+BuildRequires:  python%{pyver}-sphinx
+BuildRequires:  python%{pyver}-sphinxcontrib-blockdiag
+BuildRequires:  python%{pyver}-sphinxcontrib-seqdiag
 
 %description -n python-%{pypi_name}-doc
 Documentation for networking-bgpvpn
 %endif
 
-%package -n python-%{pypi_name}-tests
+%package -n python%{pyver}-%{pypi_name}-tests
 Summary:        networking-bgpvpn tests
 Requires:   python-%{pypi_name} = %{version}-%{release}
 
-%description -n python-%{pypi_name}-tests
+%description -n python%{pyver}-%{pypi_name}-tests
 Networking-bgpvpn set of tests
 
-%package -n python-%{pypi_name}-dashboard
+%package -n python%{pyver}-%{pypi_name}-dashboard
 Summary:    networking-bgpvpn dashboard
 Requires: python-%{pypi_name} = %{version}-%{release}
 
-%description -n python-%{pypi_name}-dashboard
+%description -n python%{pyver}-%{pypi_name}-dashboard
 Dashboard to be able to handle BGPVPN functionality via Horizon
 
-%package -n python-%{pypi_name}-heat
+%package -n python%{pyver}-%{pypi_name}-heat
 Summary:    networking-bgpvpn heat
-Requires: python-%{pypi_name} = %{version}-%{release}
+Requires: python%{pyver}-%{pypi_name} = %{version}-%{release}
 
-%description -n python-%{pypi_name}-heat
+%description -n python%{pyver}-%{pypi_name}-heat
 Networking-bgpvpn heat resources
 
-%package -n python-%{pypi_name}-tests-tempest
+%package -n python%{pyver}-%{pypi_name}-tests-tempest
 Summary:    %{name} Tempest plugin
 
 Requires:   python-%{pypi_name} = %{version}-%{release}
 Requires:   python-tempest
 Requires:   python-testtools
 
-%description -n python-%{pypi_name}-tests-tempest
+%description -n python%{pyver}-%{pypi_name}-tests-tempest
 It contains the tempest plugin for %{sname}
 
 %prep
@@ -119,16 +143,16 @@ It contains the tempest plugin for %{sname}
 rm -rf %{pypi_name}.egg-info
 
 %build
-%py2_build
+%pyver_build
 %if 0%{?with_doc}
 # generate html docs
-%{__python2} setup.py build_sphinx -b html
+%{pyver_bin} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
-rm -rf doc/build/html/.{doctrees,buildinfo}
+rm -rf %{docpath}/.{doctrees,buildinfo}
 %endif
 
 %install
-%py2_install
+%pyver_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/neutron/policy.d
 mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/
@@ -139,22 +163,22 @@ mkdir -p %{buildroot}/%{_datadir}/neutron/server
 ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neutron/server/networking_bgpvpn.conf
 
 # Create a fake tempest plugin entry point
-%py2_entrypoint %{sname} %{pypi_name}
+%pyver_entrypoint
 
 %check
 export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
 stestr --test-path $OS_TEST_PATH run
 
-%files -n python2-%{pypi_name}
+%files -n python%{pyver}-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{python2_sitelib}/%{sname}
-%{python2_sitelib}/networking_bgpvpn-*.egg-info
+%{pyver_sitelib}/%{sname}
+%{pyver_sitelib}/networking_bgpvpn-*.egg-info
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/policy.d/bgpvpn.conf
 %{_datadir}/neutron/server/networking_bgpvpn.conf
-%exclude %{python2_sitelib}/%{sname}/tests
-%exclude %{python2_sitelib}/bgpvpn_dashboard
+%exclude %{pyver_sitelib}/%{sname}/tests
+%exclude %{pyver_sitelib}/bgpvpn_dashboard
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
@@ -162,20 +186,20 @@ stestr --test-path $OS_TEST_PATH run
 %license LICENSE
 %endif
 
-%files -n python-%{pypi_name}-tests
+%files -n python%{pyver}-%{pypi_name}-tests
 %license LICENSE
 %doc networking_bgpvpn_tempest/README.rst
 %{python2_sitelib}/%{sname}/tests
 
-%files -n python-%{pypi_name}-dashboard
+%files -n python%{pyver}-%{pypi_name}-dashboard
 %license LICENSE
 %{python2_sitelib}/bgpvpn_dashboard/
 
-%files -n python-%{pypi_name}-heat
+%files -n python%{pyver}-%{pypi_name}-heat
 %license LICENSE
 %{python2_sitelib}/networking_bgpvpn_heat
 
-%files -n python-%{pypi_name}-tests-tempest
+%files -n python%{pyver}-%{pypi_name}-tests-tempest
 %{python2_sitelib}/networking_bgpvpn_tempest
 %{python2_sitelib}/%{sname}_tests.egg-info
 
