@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_7359f2fd",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "can be moved out of conditional as python2, python3- versions are available",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_b32d4a48",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 6
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_7327b264",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "python%{pyver}",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 18
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_532a6e2d",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "python%{pyver}",
+      "range": {
+        "startLine": 116,
+        "startChar": 10,
+        "endLine": 116,
+        "endChar": 16
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_13e4f60a",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "python%{pyver}",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 18
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_d3ed5ef0",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "python%{pyver}",
+      "range": {
+        "startLine": 132,
+        "startChar": 12,
+        "endLine": 132,
+        "endChar": 18
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_73b572ec",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "python%{pyver}",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 18
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_33e93ae7",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "stest-%{pyver}",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 6
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_73de9240",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "pyver_sitelib",
+      "range": {
+        "startLine": 192,
+        "startChar": 2,
+        "endLine": 192,
+        "endChar": 17
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_f31bc219",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "pyver_sitelib",
+      "range": {
+        "startLine": 196,
+        "startChar": 2,
+        "endLine": 196,
+        "endChar": 17
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_d3167ef0",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "pyver_sitelib",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 17
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_b3d42a20",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "pyver_sitelib",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 17
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_93d7e622",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-12T15:31:17Z",
+      "side": 1,
+      "message": "pyver_sitelib",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 204,
+        "endChar": 17
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
