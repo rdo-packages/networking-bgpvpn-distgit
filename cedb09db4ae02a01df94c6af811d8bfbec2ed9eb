@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_d3a9de7c",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 303
+      },
+      "writtenOn": "2018-12-12T16:08:06Z",
+      "side": 1,
+      "message": "We don\u0027t have python2-networking-odl https://logs.rdoproject.org/71/17771/3/check/legacy-DLRN-rpmbuild/da3d03c/job-output.txt.gz#_2018-12-12_15_54_07_894529",
+      "parentUuid": "9abe1de1_7359f2fd",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "cedb09db4ae02a01df94c6af811d8bfbec2ed9eb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_b32d4a48",
         "filename": "python-networking-bgpvpn.spec",
         "patchSetId": 2
