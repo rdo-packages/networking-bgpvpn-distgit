@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_5ce95b7f",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-17T10:21:21Z",
+      "side": 1,
+      "message": "this can be cleaned now as python2/python3 available now",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "a53e9d45e136ef0c8a35307da2833f0636315d65",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_fcfeef36",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-12-17T10:21:21Z",
+      "side": 1,
+      "message": "should sldo provide python- version for backward compatibility:-\n%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-tests}",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 45
+      },
+      "revId": "a53e9d45e136ef0c8a35307da2833f0636315d65",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
