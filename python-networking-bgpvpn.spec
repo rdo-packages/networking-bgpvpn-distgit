@@ -82,7 +82,8 @@ Requires:       python%{pyver}-oslo-db >= 4.27.0
 Requires:       python%{pyver}-oslo-log >= 3.36.0
 Requires:       python%{pyver}-oslo-utils >= 3.33.0
 Requires:       python%{pyver}-debtcollector >= 1.2.0
-Requires:       openstack-neutron-common
+Requires:       openstack-neutron-common >= 1:13.0.0
+Requires:       openstack-dashboard >= 1:14.0.0
 
 %description -n python%{pyver}-%{pypi_name}
 %{common_desc}
