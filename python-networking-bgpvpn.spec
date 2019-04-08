@@ -100,14 +100,6 @@ BuildRequires:  python%{pyver}-sphinxcontrib-seqdiag
 Documentation for networking-bgpvpn
 %endif
 
-%package -n python%{pyver}-%{pypi_name}-tests
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-tests}
-Summary:        networking-bgpvpn tests
-Requires:   python%{pyver}-%{pypi_name} = %{version}-%{release}
-
-%description -n python%{pyver}-%{pypi_name}-tests
-Networking-bgpvpn set of tests
-
 %package -n python%{pyver}-%{pypi_name}-dashboard
 Summary:    networking-bgpvpn dashboard
 %{?python_provide:%python_provide python%{pyver}-%{pypi_name}-dashboard}
@@ -124,17 +116,6 @@ Requires: python%{pyver}-%{pypi_name} = %{version}-%{release}
 
 %description -n python%{pyver}-%{pypi_name}-heat
 Networking-bgpvpn heat resources
-
-%package -n python%{pyver}-%{pypi_name}-tests-tempest
-Summary:    %{name} Tempest plugin
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-tests-tempest}
-
-Requires:   python%{pyver}-%{pypi_name} = %{version}-%{release}
-Requires:   python%{pyver}-tempest
-Requires:   python%{pyver}-testtools
-
-%description -n python%{pyver}-%{pypi_name}-tests-tempest
-It contains the tempest plugin for %{sname}
 
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
@@ -186,11 +167,6 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %license LICENSE
 %endif
 
-%files -n python%{pyver}-%{pypi_name}-tests
-%license LICENSE
-%doc networking_bgpvpn_tempest/README.rst
-%{pyver_sitelib}/%{sname}/tests
-
 %files -n python%{pyver}-%{pypi_name}-dashboard
 %license LICENSE
 %{pyver_sitelib}/bgpvpn_dashboard/
@@ -198,9 +174,5 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %files -n python%{pyver}-%{pypi_name}-heat
 %license LICENSE
 %{pyver_sitelib}/networking_bgpvpn_heat
-
-%files -n python%{pyver}-%{pypi_name}-tests-tempest
-%{pyver_sitelib}/networking_bgpvpn_tempest
-%{pyver_sitelib}/%{sname}_tests.egg-info
 
 %changelog
