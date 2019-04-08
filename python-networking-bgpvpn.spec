@@ -125,17 +125,6 @@ Requires: python%{pyver}-%{pypi_name} = %{version}-%{release}
 %description -n python%{pyver}-%{pypi_name}-heat
 Networking-bgpvpn heat resources
 
-%package -n python%{pyver}-%{pypi_name}-tests-tempest
-Summary:    %{name} Tempest plugin
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-tests-tempest}
-
-Requires:   python%{pyver}-%{pypi_name} = %{version}-%{release}
-Requires:   python%{pyver}-tempest
-Requires:   python%{pyver}-testtools
-
-%description -n python%{pyver}-%{pypi_name}-tests-tempest
-It contains the tempest plugin for %{sname}
-
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Let RPM handle the dependencies
@@ -162,9 +151,6 @@ mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
 ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neutron/server/networking_bgpvpn.conf
 
-# Create a fake tempest plugin entry point
-%pyver_entrypoint
-
 %check
 export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
 # (ykarel) Ignore unit tests result until https://review.openstack.org/#/c/598347/ is in promoted repo.
@@ -188,7 +174,6 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 
 %files -n python%{pyver}-%{pypi_name}-tests
 %license LICENSE
-%doc networking_bgpvpn_tempest/README.rst
 %{pyver_sitelib}/%{sname}/tests
 
 %files -n python%{pyver}-%{pypi_name}-dashboard
@@ -198,9 +183,5 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %files -n python%{pyver}-%{pypi_name}-heat
 %license LICENSE
 %{pyver_sitelib}/networking_bgpvpn_heat
-
-%files -n python%{pyver}-%{pypi_name}-tests-tempest
-%{pyver_sitelib}/networking_bgpvpn_tempest
-%{pyver_sitelib}/%{sname}_tests.egg-info
 
 %changelog
