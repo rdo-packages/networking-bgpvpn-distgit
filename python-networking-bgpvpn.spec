@@ -7,7 +7,7 @@
 %global with_doc 0
 
 Name:           python-%{pypi_name}
-Version:        7.0.0
+Version:        7.0.1
 Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
@@ -188,6 +188,9 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %{python2_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+* Fri May 10 2019 RDO <dev@lists.rdoproject.org> 7.0.1-1
+- Update to 7.0.1
+
 * Wed Aug 30 2017 rdo-trunk <javier.pena@redhat.com> 7.0.0-1
 - Update to 7.0.0
 
