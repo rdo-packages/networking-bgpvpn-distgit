@@ -204,3 +204,4 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %{pyver_sitelib}/%{sname}_tests.egg-info
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/networking-bgpvpn/commit/?id=44866dadba2595308c5fea41e03bd5d69a6e272e
