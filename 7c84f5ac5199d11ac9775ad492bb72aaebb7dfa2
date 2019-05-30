@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54624dc9_34b9287b",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-05-30T14:20:17Z",
+      "side": 0,
+      "message": "-tests subpackage is intended for unit tests so i think we should keep it.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 45
+      },
+      "revId": "7c84f5ac5199d11ac9775ad492bb72aaebb7dfa2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "609d8c8d_24b4a6e0",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-05-30T14:20:17Z",
+      "side": 0,
+      "message": "need to remove this line which creates an entry point for the tempest plugin.",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 17
+      },
+      "revId": "7c84f5ac5199d11ac9775ad492bb72aaebb7dfa2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
