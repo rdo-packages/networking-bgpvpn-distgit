@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b09cb51e_87ee4e0f",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-05-30T09:06:47Z",
+      "side": 1,
+      "message": "source deleted and moved to neutron tempest plugin",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 42
+      },
+      "revId": "721d476aa15c6c8cb8b7df9d1a3161af08ceb429",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
