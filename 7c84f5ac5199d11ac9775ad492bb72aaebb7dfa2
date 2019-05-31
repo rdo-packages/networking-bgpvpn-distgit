@@ -116,6 +116,30 @@
       "revId": "7c84f5ac5199d11ac9775ad492bb72aaebb7dfa2",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd4ffa8e_38ff308c",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 534
+      },
+      "writtenOn": "2019-05-31T10:24:47Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f9c0cdf4_962e1eff",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 31
+      },
+      "revId": "7c84f5ac5199d11ac9775ad492bb72aaebb7dfa2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
