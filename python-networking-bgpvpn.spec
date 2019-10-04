@@ -1,3 +1,4 @@
+%global milestone .0rc1
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -28,13 +29,17 @@ project is to allow attachment of Neutron networks and/or routers to carrier \
 provided.
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        11.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+#
+# patches_base=11.0.0.0rc1
+#
+
 BuildArch:      noarch
 
 BuildRequires:  openstack-macros
@@ -185,3 +190,6 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %{pyver_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Fri Oct 04 2019 RDO <dev@lists.rdoproject.org> 11.0.0-0.1.0rc1
+- Update to 11.0.0.0rc1
+
