@@ -28,7 +28,7 @@ project is to allow attachment of Neutron networks and/or routers to carrier \
 provided.
 
 Name:           python-%{pypi_name}
-Version:        11.0.0
+Version:        11.0.1
 Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
@@ -187,6 +187,9 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %{pyver_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Tue Feb 18 2020 RDO <dev@lists.rdoproject.org> 11.0.1-1
+- Update to 11.0.1
+
 * Wed Oct 16 2019 RDO <dev@lists.rdoproject.org> 11.0.0-1
 - Update to 11.0.0
 
