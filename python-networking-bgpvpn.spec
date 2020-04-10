@@ -3,19 +3,6 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global docpath doc/build/html
 
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-%global pyver_entrypoint %py%{pyver}_entrypoint %{sname} %{pypi_name}
-# End of macros for py2/py3 compatibility
 
 %global with_doc 1
 
@@ -39,90 +26,86 @@ BuildArch:      noarch
 
 BuildRequires:  openstack-macros
 BuildRequires:  git
-BuildRequires:  python%{pyver}-webob
-BuildRequires:  python%{pyver}-hacking
-BuildRequires:  python%{pyver}-networking-bagpipe
-BuildRequires:  python%{pyver}-neutron-lib-tests
-BuildRequires:  python%{pyver}-neutron-tests
-BuildRequires:  python%{pyver}-neutron
-BuildRequires:  python%{pyver}-osc-lib-tests
-BuildRequires:  python%{pyver}-oslotest
-BuildRequires:  python%{pyver}-openstackclient
-BuildRequires:  python%{pyver}-openvswitch
-BuildRequires:  python%{pyver}-pbr
-BuildRequires:  python%{pyver}-subunit
-BuildRequires:  python%{pyver}-stestr
-BuildRequires:  python%{pyver}-testrepository
-BuildRequires:  python%{pyver}-testresources
-BuildRequires:  python%{pyver}-testscenarios
-BuildRequires:  python%{pyver}-testtools
-BuildRequires:  python%{pyver}-devel
+BuildRequires:  python3-webob
+BuildRequires:  python3-hacking
+BuildRequires:  python3-networking-bagpipe
+BuildRequires:  python3-neutron-lib-tests
+BuildRequires:  python3-neutron-tests
+BuildRequires:  python3-neutron
+BuildRequires:  python3-osc-lib-tests
+BuildRequires:  python3-oslotest
+BuildRequires:  python3-openstackclient
+BuildRequires:  python3-openvswitch
+BuildRequires:  python3-pbr
+BuildRequires:  python3-subunit
+BuildRequires:  python3-stestr
+BuildRequires:  python3-testrepository
+BuildRequires:  python3-testresources
+BuildRequires:  python3-testscenarios
+BuildRequires:  python3-testtools
+BuildRequires:  python3-devel
 
-%if %{pyver} == 2
-BuildRequires:  python-networking-odl
-%else
-BuildRequires:  python%{pyver}-networking-odl
-%endif
+BuildRequires:  python3-networking-odl
 
 %description
 %{common_desc}
 
-%package -n     python%{pyver}-%{pypi_name}
+%package -n     python3-%{pypi_name}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
+%{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:       python%{pyver}-webob >= 1.2.3
-Requires:       python%{pyver}-pbr >= 2.0.0
-Requires:       python%{pyver}-babel >= 2.3.4
-Requires:       python%{pyver}-neutron-lib >= 1.18.0
-Requires:       python%{pyver}-neutronclient >= 6.3.0
-Requires:       python%{pyver}-oslo-config >= 2:5.2.0
-Requires:       python%{pyver}-oslo-i18n >= 3.15.3
-Requires:       python%{pyver}-oslo-db >= 4.27.0
-Requires:       python%{pyver}-oslo-log >= 3.36.0
-Requires:       python%{pyver}-oslo-utils >= 3.33.0
-Requires:       python%{pyver}-debtcollector >= 1.2.0
-Requires:       openstack-neutron-common >= 1:13.0.0
+Requires:       python3-pbr >= 4.0.0
+Requires:       python3-neutron-lib >= 1.30.0
+Requires:       python3-neutronclient >= 6.3.0
+Requires:       python3-oslo-config >= 2:5.2.0
+Requires:       python3-oslo-i18n >= 3.15.3
+Requires:       python3-oslo-db >= 4.37.0
+Requires:       python3-oslo-log >= 3.36.0
+Requires:       python3-oslo-utils >= 3.33.0
+Requires:       python3-debtcollector >= 1.19.0
+Requires:       openstack-neutron-common >= 1:14.0.0
 
-%description -n python%{pyver}-%{pypi_name}
+%description -n python3-%{pypi_name}
 %{common_desc}
 
 %if 0%{?with_doc}
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
 
-BuildRequires:  python%{pyver}-openstackdocstheme
-BuildRequires:  python%{pyver}-sphinx
-BuildRequires:  python%{pyver}-sphinxcontrib-blockdiag
-BuildRequires:  python%{pyver}-sphinxcontrib-seqdiag
+BuildRequires:  python3-openstackdocstheme
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-sphinxcontrib-blockdiag
+BuildRequires:  python3-sphinxcontrib-seqdiag
 
 %description -n python-%{pypi_name}-doc
 Documentation for networking-bgpvpn
 %endif
 
-%package -n python%{pyver}-%{pypi_name}-tests
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-tests}
+%package -n python3-%{pypi_name}-tests
+%{?python_provide:%python_provide python3-%{pypi_name}-tests}
 Summary:        networking-bgpvpn tests
-Requires:   python%{pyver}-%{pypi_name} = %{version}-%{release}
+Requires:   python3-%{pypi_name} = %{version}-%{release}
 
-%description -n python%{pyver}-%{pypi_name}-tests
+Requires:   python3-webob >= 1.2.3
+
+%description -n python3-%{pypi_name}-tests
 Networking-bgpvpn set of tests
 
-%package -n python%{pyver}-%{pypi_name}-dashboard
+%package -n python3-%{pypi_name}-dashboard
 Summary:    networking-bgpvpn dashboard
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-dashboard}
-Requires: python%{pyver}-%{pypi_name} = %{version}-%{release}
+%{?python_provide:%python_provide python3-%{pypi_name}-dashboard}
+Requires: python3-%{pypi_name} = %{version}-%{release}
 Requires: openstack-dashboard >= 1:14.0.0
 
-%description -n python%{pyver}-%{pypi_name}-dashboard
+%description -n python3-%{pypi_name}-dashboard
 Dashboard to be able to handle BGPVPN functionality via Horizon
 
-%package -n python%{pyver}-%{pypi_name}-heat
+%package -n python3-%{pypi_name}-heat
 Summary:    networking-bgpvpn heat
-%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-heat}
-Requires: python%{pyver}-%{pypi_name} = %{version}-%{release}
+%{?python_provide:%python_provide python3-%{pypi_name}-heat}
+Requires: python3-%{pypi_name} = %{version}-%{release}
 
-%description -n python%{pyver}-%{pypi_name}-heat
+%description -n python3-%{pypi_name}-heat
 Networking-bgpvpn heat resources
 
 %prep
@@ -133,16 +116,16 @@ Networking-bgpvpn heat resources
 rm -rf %{pypi_name}.egg-info
 
 %build
-%pyver_build
+%py3_build
 %if 0%{?with_doc}
 # generate html docs
-%{pyver_bin} setup.py build_sphinx -b html
+%{__python3} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
 rm -rf %{docpath}/.{doctrees,buildinfo}
 %endif
 
 %install
-%pyver_install
+%py3_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/neutron/policy.d
 mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/
@@ -154,17 +137,17 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 %check
 export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
 # (ykarel) Ignore unit tests result until https://review.openstack.org/#/c/598347/ is in promoted repo.
-stestr-%{pyver} --test-path $OS_TEST_PATH run || true
+stestr-3 --test-path $OS_TEST_PATH run || true
 
-%files -n python%{pyver}-%{pypi_name}
+%files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
-%{pyver_sitelib}/%{sname}
-%{pyver_sitelib}/networking_bgpvpn-*.egg-info
+%{python3_sitelib}/%{sname}
+%{python3_sitelib}/networking_bgpvpn-*.egg-info
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
 %{_datadir}/neutron/server/networking_bgpvpn.conf
-%exclude %{pyver_sitelib}/%{sname}/tests
-%exclude %{pyver_sitelib}/bgpvpn_dashboard
+%exclude %{python3_sitelib}/%{sname}/tests
+%exclude %{python3_sitelib}/bgpvpn_dashboard
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
@@ -172,16 +155,16 @@ stestr-%{pyver} --test-path $OS_TEST_PATH run || true
 %license LICENSE
 %endif
 
-%files -n python%{pyver}-%{pypi_name}-tests
+%files -n python3-%{pypi_name}-tests
 %license LICENSE
-%{pyver_sitelib}/%{sname}/tests
+%{python3_sitelib}/%{sname}/tests
 
-%files -n python%{pyver}-%{pypi_name}-dashboard
+%files -n python3-%{pypi_name}-dashboard
 %license LICENSE
-%{pyver_sitelib}/bgpvpn_dashboard/
+%{python3_sitelib}/bgpvpn_dashboard/
 
-%files -n python%{pyver}-%{pypi_name}-heat
+%files -n python3-%{pypi_name}-heat
 %license LICENSE
-%{pyver_sitelib}/networking_bgpvpn_heat
+%{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
