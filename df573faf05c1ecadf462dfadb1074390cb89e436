@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a126c389_c53d4824",
+        "filename": "python-networking-bgpvpn.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-04-14T06:58:39Z",
+      "side": 1,
+      "message": "can be moved to test sub package as it\u0027s only needed for tests and is not part of requirements.txt.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 45
+      },
+      "revId": "df573faf05c1ecadf462dfadb1074390cb89e436",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
