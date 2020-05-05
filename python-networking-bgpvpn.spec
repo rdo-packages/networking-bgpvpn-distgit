@@ -119,7 +119,7 @@ rm -rf %{pypi_name}.egg-info
 %py3_build
 %if 0%{?with_doc}
 # generate html docs
-%{__python3} setup.py build_sphinx -b html
+PYTHONPATH=. sphinx-build -W -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf %{docpath}/.{doctrees,buildinfo}
 %endif
