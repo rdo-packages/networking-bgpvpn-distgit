@@ -168,3 +168,4 @@ stestr-3 --test-path $OS_TEST_PATH run || true
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/networking-bgpvpn/commit/?id=7ecd31f973d2d22348fe3537ca61b76b54800873
