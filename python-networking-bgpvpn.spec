@@ -63,7 +63,7 @@ Requires:       python3-oslo-db >= 4.37.0
 Requires:       python3-oslo-log >= 3.36.0
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-debtcollector >= 1.19.0
-Requires:       openstack-neutron-common >= 1:14.0.0
+Requires:       openstack-neutron-common >= 1:16.0.0
 
 %description -n python3-%{pypi_name}
 %{common_desc}
@@ -95,7 +95,7 @@ Networking-bgpvpn set of tests
 Summary:    networking-bgpvpn dashboard
 %{?python_provide:%python_provide python3-%{pypi_name}-dashboard}
 Requires: python3-%{pypi_name} = %{version}-%{release}
-Requires: openstack-dashboard >= 1:14.0.0
+Requires: openstack-dashboard >= 1:17.1.0
 
 %description -n python3-%{pypi_name}-dashboard
 Dashboard to be able to handle BGPVPN functionality via Horizon
