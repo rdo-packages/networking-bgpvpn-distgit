@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -17,14 +16,12 @@ provided.
 
 Name:           python-%{pypi_name}
 Version:        13.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=13.0.0.0rc1
 #
 
 BuildArch:      noarch
@@ -173,6 +170,9 @@ stestr-3 --test-path $OS_TEST_PATH run || true
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Wed Oct 14 2020 RDO <dev@lists.rdoproject.org> 13.0.0-1
+- Update to 13.0.0
+
 * Fri Sep 25 2020 RDO <dev@lists.rdoproject.org> 13.0.0-0.1.0rc1
 - Update to 13.0.0.0rc1
 
