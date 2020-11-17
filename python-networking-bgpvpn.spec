@@ -37,7 +37,7 @@ BuildRequires:  /usr/bin/gpgv2
 %endif
 
 BuildRequires:  openstack-macros
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  python3-webob
 BuildRequires:  python3-hacking
 BuildRequires:  python3-networking-bagpipe
