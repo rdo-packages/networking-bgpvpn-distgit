@@ -57,8 +57,6 @@ BuildRequires:  python3-testscenarios
 BuildRequires:  python3-testtools
 BuildRequires:  python3-devel
 
-BuildRequires:  python3-networking-odl
-
 %description
 %{common_desc}
 
@@ -152,8 +150,7 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 
 %check
 export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
-# (ykarel) Ignore unit tests result until https://review.openstack.org/#/c/598347/ is in promoted repo.
-stestr-3 --test-path $OS_TEST_PATH run || true
+stestr-3 --test-path $OS_TEST_PATH run
 
 %files -n python3-%{pypi_name}
 %license LICENSE
