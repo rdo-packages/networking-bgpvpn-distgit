@@ -40,7 +40,6 @@ BuildRequires:  openstack-macros
 BuildRequires:  git-core
 BuildRequires:  python3-webob
 BuildRequires:  python3-hacking
-BuildRequires:  python3-networking-bagpipe
 BuildRequires:  python3-neutron-lib-tests
 BuildRequires:  python3-neutron-tests
 BuildRequires:  python3-neutron
@@ -150,6 +149,9 @@ ln -s %{_sysconfdir}/neutron/networking_bgpvpn.conf %{buildroot}%{_datadir}/neut
 
 %check
 export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
+# We want to skip the bagpipe tests, and the only way to prevent them
+# from being discovered is to remove them
+rm -rf networking_bgpvpn/tests/unit/services/bagpipe
 stestr-3 --test-path $OS_TEST_PATH run
 
 %files -n python3-%{pypi_name}
