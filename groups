@@ -1,9 +1,9 @@
 # UUID Group Name
 global:Registered-Users	Registered Users
+62f88adca162cae9e7d10f2d2e22c071bf909017	openstack/networking-bgpvpn-core
+global:Anonymous-Users	Anonymous Users
+401cf37bee35d1c809d4d957e55f2a304f8eed69	rdo-provenpackagers
+05a678d3d4a168e149d5e8a0063bbd1b1c5526da	Administrators
 4572c517702492251ad622a289176552a8acbbb2	rdo-superusers
 6ddfecad023c6f4fa3ac8c4d2583c502ea675a73	Non-Interactive Users
 950bb57c2e08f0a57e2074a7b05273cc8a0d0d28	openstack/networking-bgpvpn-ptl
-05a678d3d4a168e149d5e8a0063bbd1b1c5526da	Administrators
-global:Anonymous-Users	Anonymous Users
-62f88adca162cae9e7d10f2d2e22c071bf909017	openstack/networking-bgpvpn-core
-401cf37bee35d1c809d4d957e55f2a304f8eed69	rdo-provenpackagers
