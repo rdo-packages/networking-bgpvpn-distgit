@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0xa63ea142678138d1bb15f2e303bdfd64dd164087
 %global pypi_name networking-bgpvpn
@@ -19,14 +18,12 @@ provided.
 
 Name:           python-%{pypi_name}
 Version:        17.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        ASL 2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
-#
-# patches_base=17.0.0.0rc1
 #
 
 # Required for tarball sources verification
@@ -188,6 +185,9 @@ stestr-3 --test-path $OS_TEST_PATH run
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Wed Oct 05 2022 RDO <dev@lists.rdoproject.org> 17.0.0-1
+- Update to 17.0.0
+
 * Fri Sep 16 2022 RDO <dev@lists.rdoproject.org> 17.0.0-0.1.0rc1
 - Update to 17.0.0.0rc1
 
