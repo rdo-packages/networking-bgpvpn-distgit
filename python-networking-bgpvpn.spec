@@ -3,6 +3,14 @@
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some runtime reqs from automatic generator
+%global excluded_reqs networking-bagpipe horizon
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order pylint isort
+# Exclude sphinx from BRs if docs are disabled
+%if ! 0%{?with_doc}
+%global excluded_brs %{excluded_brs} sphinx openstackdocstheme
+%endif
 %global docpath doc/build/html
 
 
@@ -21,7 +29,7 @@ Version:        XXX
 Release:        XXX
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -38,40 +46,19 @@ BuildRequires:  /usr/bin/gpgv2
 
 BuildRequires:  openstack-macros
 BuildRequires:  git-core
-BuildRequires:  python3-webob
-BuildRequires:  python3-hacking
 BuildRequires:  python3-neutron-lib-tests
 BuildRequires:  python3-neutron-tests
-BuildRequires:  python3-neutron
 BuildRequires:  python3-osc-lib-tests
-BuildRequires:  python3-oslotest
-BuildRequires:  python3-openstackclient
-BuildRequires:  python3-openvswitch
-BuildRequires:  python3-pbr
-BuildRequires:  python3-subunit
-BuildRequires:  python3-stestr
-BuildRequires:  python3-testrepository
-BuildRequires:  python3-testresources
-BuildRequires:  python3-testscenarios
-BuildRequires:  python3-testtools
 BuildRequires:  python3-devel
+BuildRequires:  openstack-dashboard
+BuildRequires:  pyproject-rpm-macros
 
 %description
 %{common_desc}
 
 %package -n     python3-%{pypi_name}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
-%{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:       python3-pbr >= 4.0.0
-Requires:       python3-neutron-lib >= 1.30.0
-Requires:       python3-neutronclient >= 6.3.0
-Requires:       python3-oslo-config >= 2:5.2.0
-Requires:       python3-oslo-i18n >= 3.15.3
-Requires:       python3-oslo-db >= 4.37.0
-Requires:       python3-oslo-log >= 3.36.0
-Requires:       python3-oslo-utils >= 3.33.0
-Requires:       python3-debtcollector >= 1.19.0
 Requires:       openstack-neutron-common >= 1:16.0.0
 
 %description -n python3-%{pypi_name}
@@ -81,20 +68,13 @@ Requires:       openstack-neutron-common >= 1:16.0.0
 %package -n python-%{pypi_name}-doc
 Summary:        networking-bgpvpn documentation
 
-BuildRequires:  python3-openstackdocstheme
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-sphinxcontrib-blockdiag
-BuildRequires:  python3-sphinxcontrib-seqdiag
-
 %description -n python-%{pypi_name}-doc
 Documentation for networking-bgpvpn
 %endif
 
 %package -n python3-%{pypi_name}-tests
-%{?python_provide:%python_provide python3-%{pypi_name}-tests}
 Summary:        networking-bgpvpn tests
 Requires:   python3-%{pypi_name} = %{version}-%{release}
-
 Requires:   python3-webob >= 1.2.3
 
 %description -n python3-%{pypi_name}-tests
@@ -102,7 +82,7 @@ Networking-bgpvpn set of tests
 
 %package -n python3-%{pypi_name}-dashboard
 Summary:    networking-bgpvpn dashboard
-%{?python_provide:%python_provide python3-%{pypi_name}-dashboard}
+
 Requires: python3-%{pypi_name} = %{version}-%{release}
 Requires: openstack-dashboard >= 1:17.1.0
 
@@ -111,7 +91,6 @@ Dashboard to be able to handle BGPVPN functionality via Horizon
 
 %package -n python3-%{pypi_name}-heat
 Summary:    networking-bgpvpn heat
-%{?python_provide:%python_provide python3-%{pypi_name}-heat}
 Requires: python3-%{pypi_name} = %{version}-%{release}
 
 %description -n python3-%{pypi_name}-heat
@@ -123,22 +102,48 @@ Networking-bgpvpn heat resources
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
-# Let RPM handle the dependencies
-%py_req_cleanup
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
+
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+# required to run tests using tox macro
+sed -i 's/{envsitepackagesdir}\///' tox.ini
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs}; do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+# Exclude some bad-known runtime reqs
+for pkg in %{excluded_reqs}; do
+  sed -i /^${pkg}.*/d requirements.txt
+done
+
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%py3_build
+%pyproject_wheel
 %if 0%{?with_doc}
 # generate html docs
-PYTHONPATH=. sphinx-build -W -b html doc/source doc/build/html
+export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib}
+%tox -e docs
 # remove the sphinx-build leftovers
 rm -rf %{docpath}/.{doctrees,buildinfo}
 %endif
 
 %install
-%py3_install
+%pyproject_install
 
 mkdir -p %{buildroot}%{_sysconfdir}/neutron/policy.d
 mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/
@@ -152,13 +157,14 @@ export OS_TEST_PATH="./networking_bgpvpn/tests/unit"
 # We want to skip the bagpipe tests, and the only way to prevent them
 # from being discovered is to remove them
 rm -rf networking_bgpvpn/tests/unit/services/bagpipe
-stestr-3 --test-path $OS_TEST_PATH run
+export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_sitelib}:/usr/share/openstack-dashboard/
+%tox -e %{default_toxenv}
 
 %files -n python3-%{pypi_name}
 %license LICENSE
 %doc README.rst
 %{python3_sitelib}/%{sname}
-%{python3_sitelib}/networking_bgpvpn-*.egg-info
+%{python3_sitelib}/networking_bgpvpn-*.dist-info
 %config(noreplace) %attr(0640, root, neutron) %{_sysconfdir}/neutron/networking_bgpvpn.conf
 %{_datadir}/neutron/server/networking_bgpvpn.conf
 %exclude %{python3_sitelib}/%{sname}/tests
