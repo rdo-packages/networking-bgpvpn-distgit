@@ -13,8 +13,9 @@
 %endif
 %global docpath doc/build/html
 
-
-%global with_doc 1
+# Doc building disabled until seqdiag/blockdiag usage is removed upstream
+# https://bugs.launchpad.net/bgpvpn/+bug/2026345
+%global with_doc 0
 
 %global common_desc \
 BGPMPLS VPN Extension for OpenStack Networking This project provides an API and \
