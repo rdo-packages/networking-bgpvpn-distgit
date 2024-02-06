@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2a7a947_c1c3f488",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2024-02-06T08:38:09Z",
+      "side": 1,
+      "message": "using blockdiag in docs which is broken. It needs to remove blockdiag usage upstream, until then we need to disable doc building. I\u0027m taking care",
+      "revId": "bcef222dc61fa8209b170e0de9bc8efe293e9a99",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
