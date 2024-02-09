@@ -186,3 +186,4 @@ stestr-3 --test-path $OS_TEST_PATH run
 * Fri Apr 08 2022 RDO <dev@lists.rdoproject.org> 16.0.0-1
 - Update to 16.0.0
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/networking-bgpvpn/commit/8bf872c3466509567bb22a802f7def66d2eae9d9
