@@ -1,5 +1,6 @@
+%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
@@ -26,13 +27,17 @@ project is to allow attachment of Neutron networks and/or routers to carrier \
 provided.
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        20.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        Apache-2.0
 URL:            http://www.openstack.org/
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+#
+# patches_base=20.0.0.0rc1
+#
+
 # Required for tarball sources verification
 %if 0%{?sources_gpg} == 1
 Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
@@ -190,3 +195,6 @@ export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_siteli
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Tue Mar 12 2024 RDO <dev@lists.rdoproject.org> 20.0.0-0.1.0rc1
+- Update to 20.0.0.0rc1
+
