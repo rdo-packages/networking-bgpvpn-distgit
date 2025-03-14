@@ -1,8 +1,11 @@
+%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x22284f69d9eccdf3df7819791c711af193ff8e54
 %global pypi_name networking-bgpvpn
 %global sname networking_bgpvpn
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%{?dlrn: %global tarsources python-networking-bgpvpn}
+%{!?dlrn: %global tarsources python_networking_bgpvpn}
 # we are excluding some runtime reqs from automatic generator
 %global excluded_reqs networking-bagpipe horizon
 # we are excluding some BRs from automatic generator
@@ -26,16 +29,20 @@ project is to allow attachment of Neutron networks and/or routers to carrier \
 provided.
 
 Name:           python-%{pypi_name}
-Version:        XXX
-Release:        XXX
+Version:        22.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        API and Framework to interconnect bgpvpn to neutron networks
 
 License:        Apache-2.0
 URL:            http://www.openstack.org/
-Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
+Source0:        https://tarballs.openstack.org/%{pypi_name}/%{tarsources}-%{upstream_version}.tar.gz
+#
+# patches_base=22.0.0.0rc1
+#
+
 # Required for tarball sources verification
 %if 0%{?sources_gpg} == 1
-Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
+Source101:        https://tarballs.openstack.org/%{pypi_name}/%{tarsources}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
 BuildArch:      noarch
@@ -102,7 +109,7 @@ Networking-bgpvpn heat resources
 %if 0%{?sources_gpg} == 1
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
-%autosetup -n %{pypi_name}-%{upstream_version} -S git
+%autosetup -n %{tarsources}-%{upstream_version} -S git
 
 sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
 sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
@@ -190,3 +197,6 @@ export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_siteli
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+* Fri Mar 14 2025 RDO <dev@lists.rdoproject.org> 22.0.0-0.1.0rc1
+- Update to 22.0.0.0rc1
+
