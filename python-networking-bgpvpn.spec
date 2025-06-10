@@ -192,3 +192,4 @@ export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_siteli
 %{python3_sitelib}/networking_bgpvpn_heat
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/networking-bgpvpn/commit/5c54dfc036523babbb5757455a555bcce1b8566f
