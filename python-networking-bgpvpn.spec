@@ -141,6 +141,11 @@ done
 %install
 %pyproject_install
 
+export PYTHONPATH="%{buildroot}/%{python3_sitelib}"
+for file in `ls etc/oslo-config-generator/*`; do
+    oslo-config-generator --config-file=$file
+done
+
 %if 0%{?with_doc}
 # generate html docs
 %tox -e docs
@@ -149,7 +154,7 @@ rm -rf %{docpath}/.{doctrees,buildinfo}
 %endif
 
 mkdir -p %{buildroot}%{_sysconfdir}/neutron/policy.d
-mv %{buildroot}/usr/etc/neutron/networking_bgpvpn.conf %{buildroot}%{_sysconfdir}/neutron/
+mv etc/networking_bgpvpn.conf.sample %{buildroot}%{_sysconfdir}/neutron/networking_bgpvpn.conf
 
 # Make sure neutron-server loads new configuration file
 mkdir -p %{buildroot}/%{_datadir}/neutron/server
