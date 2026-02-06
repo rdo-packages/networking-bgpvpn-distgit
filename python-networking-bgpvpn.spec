@@ -198,3 +198,4 @@ export PYTHONPATH=.:%{buildroot}%{python3_sitearch}:%{buildroot}%{python3_siteli
 * Mon Mar 18 2024 RDO <dev@lists.rdoproject.org> 20.0.0-0.1.0rc1
 - Update to 20.0.0.0rc1
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/networking-bgpvpn/commit/e3eb9e90c0172b1591397cc5dd72fa26ddcde5cd
